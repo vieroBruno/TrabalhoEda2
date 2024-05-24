@@ -42,11 +42,14 @@ int main(int argc, char *argv[]) {
 	}
 	
 	system("CLS");
-	int status[N] = { 0 }, ant[N] = { 0 };
+	int vs[N] = { 0 }, va[N] = { 0 };
 	Fila f;
 	inicializa_fila( &f, N );
 	
-		
+	vs[ini-65] = 1;
+	inserir_fila( &f, ini );
+	mostra_fila( f );
+	
 	desaloca_grafo( &g );
 	
 	return 0;

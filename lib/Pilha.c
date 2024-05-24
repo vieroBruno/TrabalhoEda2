@@ -5,7 +5,7 @@
 void inicializa_pilha( Pilha *p, int c ){
 	p->topo = -1;
 	p->capacidade = c;
-	p->dados = malloc( sizeof( int ) * c );
+	p->dados = malloc( c );
 }
 
 int pilha_vazia( Pilha p ){
@@ -16,7 +16,7 @@ int pilha_cheia( Pilha p ){
 	return p.topo == p.capacidade - 1;
 }
 
-int empilha(Pilha *p, int info ){
+int empilha_pilha(Pilha *p, char info ){
 	if( pilha_cheia( *p ) )
 		return ERRO_PILHA_CHEIA;
 	
@@ -24,7 +24,7 @@ int empilha(Pilha *p, int info ){
 	return 1; // Sucesso.
 }
 
-int desempilha( Pilha *p, int *info ){
+int desempilha_pilha( Pilha *p, char *info ){
 	if( pilha_vazia( *p ) )
 		return ERRO_PILHA_VAZIA;
 	
@@ -32,7 +32,7 @@ int desempilha( Pilha *p, int *info ){
 	return 1; // Sucesso.
 }
 
-int le_topo( Pilha p, int *info ){
+int le_topo( Pilha p, char *info ){
 	if( pilha_vazia( p ) )
 		return ERRO_PILHA_VAZIA;
 	
@@ -47,7 +47,7 @@ void mostra_pilha( Pilha p ){
 		printf("Dados da pilha:\n");
 		int i;
 		for( i = 0 ; i <= p.topo ; i++ )
-			printf("%d\n", p.dados[i] );
+			printf("%c\n", p.dados[i] );
 	}
 	printf("----------------\n");
 }
