@@ -13,12 +13,14 @@ void inicializa_grafo( Grafo *p, int l, int c ){
 }
 
 void mostra_grafo( Grafo x ){
-	printf("Dados do Grafo:\n");
+	printf("\n Grafo:\n\n");
 	int i, j;
+	printf("        1   2   3   4   5   6   7\n\n");
 	for( i = 0 ; i < x.lin ; i++ ){
+		printf("  %d  ", i+1);
 		for( j = 0 ; j < x.col ; j++ )
-			printf("%d\t", x.dados[i][j]);
-		printf("\n");
+			printf(" | %d", x.dados[i][j]);
+		printf(" |\n");
 	}
 }
 
