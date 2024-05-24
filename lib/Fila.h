@@ -11,8 +11,8 @@ typedef struct{
 void inicializa_fila( Fila *p, int c );
 int fila_vazia( Fila f );
 int fila_cheia( Fila f );
-int inserir_fila( Fila *p, char info );
-int remover_fila( Fila *p, char *info );
+int inserir( Fila *p, char info );
+int remover( Fila *p, char *info );
 void mostra_fila( Fila f );
 void desaloca_fila( Fila *p );
 

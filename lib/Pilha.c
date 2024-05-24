@@ -16,7 +16,7 @@ int pilha_cheia( Pilha p ){
 	return p.topo == p.capacidade - 1;
 }
 
-int empilha_pilha(Pilha *p, char info ){
+int empilha(Pilha *p, char info ){
 	if( pilha_cheia( *p ) )
 		return ERRO_PILHA_CHEIA;
 	
@@ -24,7 +24,7 @@ int empilha_pilha(Pilha *p, char info ){
 	return 1; // Sucesso.
 }
 
-int desempilha_pilha( Pilha *p, char *info ){
+int desempilha( Pilha *p, char *info ){
 	if( pilha_vazia( *p ) )
 		return ERRO_PILHA_VAZIA;
 	

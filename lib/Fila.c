@@ -16,7 +16,7 @@ int fila_cheia( Fila f ){
 	return f.n == f.capacidade;
 }
 
-int inserir_fila( Fila *p, char info ){
+int inserir( Fila *p, char info ){
 	if( fila_cheia( *p ) )
 		return ERRO_FILA_CHEIA;
 	
@@ -26,7 +26,7 @@ int inserir_fila( Fila *p, char info ){
 	return 1; // Sucesso.
 }
 
-int remover_fila( Fila *p, char *info ){
+int remover( Fila *p, char *info ){
 	if( fila_vazia( *p ) )
 		return ERRO_FILA_VAZIA;
 	*info = p->dados[p->inicio];

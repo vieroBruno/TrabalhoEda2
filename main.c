@@ -42,13 +42,53 @@ int main(int argc, char *argv[]) {
 	}
 	
 	system("CLS");
-	int vs[N] = { 0 }, va[N] = { 0 };
+	int vs[N] = { 0 };
+	char va[N];
 	Fila f;
 	inicializa_fila( &f, N );
 	
 	vs[ini-65] = 1;
-	inserir_fila( &f, ini );
-	mostra_fila( f );
+	inserir( &f, ini );
+	int i, achou = 0;
+	char x;
+	while( !fila_vazia( f ) && !achou ) {
+		remover( &f, &x );
+		if( x == fim ) {
+			achou = 1;
+		} else {
+			for( i=0; i<N; i++) {
+				if( g.dados[x-65][i] == 1 ) {
+					if( vs[i] == 0 ) {
+						vs[i] = 1;
+						va[i] = x;
+						inserir( &f, i+65 );
+					}
+				}
+			}
+		}
+	}
+	
+	Pilha p;
+	if( achou ) {
+		inicializa_pilha( &p, N );
+		while( x != 0 ) {
+			empilha( &p, x );
+			x = va[x-65];
+		}
+		printf("\n Caminho Mais Rápido de %c a %c:\n\n ", ini, fim);
+		while( !pilha_vazia( p ) ) {
+			desempilha( &p, &x );
+			if( int_ver( x ) ) {
+				printf("%c", x);
+				if(!pilha_vazia( p )) {
+					printf(" -> ");
+				}
+			}
+		}
+		printf("\n");
+	} else {
+		printf("\n %c NÃO é Alcançável a Partir de A!\n");
+	}
 	
 	desaloca_grafo( &g );
 	
