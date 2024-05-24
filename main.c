@@ -3,6 +3,7 @@
 #include <locale.h>
 #include "lib/Grafo.h"
 #include "lib/Pilha.h"
+#include "lib/Fila.h"
 
 #define N 7
 
@@ -42,6 +43,9 @@ int main(int argc, char *argv[]) {
 	
 	system("CLS");
 	int status[N] = { 0 }, ant[N] = { 0 };
+	Fila f;
+	inicializa_fila( &f, N );
+	
 		
 	desaloca_grafo( &g );
 	
