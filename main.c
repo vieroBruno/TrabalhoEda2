@@ -5,64 +5,53 @@
 #include "lib/Pilha.h"
 #include "lib/Fila.h"
 
-#define N 7
-
-int int_ver( char c );
-char alt_min( char c );
-
 int main(int argc, char *argv[]) {
 	setlocale(LC_ALL,"Portuguese");
 	
 	Grafo g;
-	carrega_grafo( "lib/entrada.txt", &g );
+	carrega_grafo( "entrada.txt", &g );
 	
-	char ini, fim;
+	int ini, fim, n = g.lin;
 	
-	printf("\n Insira o Vértice Inicial ( A - G ): ");
-	scanf(" %c", &ini);
-	while(!int_ver( ini )) {
+	printf("\n Insira o Vértice Inicial ( 1 - %d ): ", n);
+	scanf("%d", &ini);
+	while( ini < 1 || ini > n ) {
 		system("CLS");
-		printf("\n Valor Inválido! Insira o Vértice Inicial ( A - G ): ");
-		scanf(" %c", &ini);
-	}
-	if( ini>=97 && ini<=103 ) {
-		ini -= 32;
+		printf("\n Valor Inválido! Insira o Vértice Inicial ( 1 - %d ): ", n);
+		scanf("%d", &ini);
 	}
 	
 	system("CLS");
-	printf("\n Insira o Vértice Final ( A - G ): ");
-	scanf(" %c", &fim);
-	while(!int_ver( fim )) {
+	printf("\n Insira o Vértice Final ( 1 - %d ): ", n);
+	scanf("%d", &fim);
+	while( fim < 1 || fim > n ) {
 		system("CLS");
-		printf("\n Valor Inválido! Insira o Vértice Final ( A - G ): ");
-		scanf(" %c", &fim);
-	}
-	if( fim>=97 && fim<=103 ) {
-		fim -= 32;
+		printf("\n Valor Inválido! Insira o Vértice Final ( 1 - %d ): ", n);
+		scanf("%d", &fim);
 	}
 	
 	system("CLS");
-	int vs[N] = { 0 };
-	char va[N];
+	int vs[n], va[n], i;
+	for( i=0; i<n; i++ ) {
+		vs[i] = 0;
+		va[i] = -1;
+	}
 	Fila f;
-	inicializa_fila( &f, N );
+	inicializa_fila( &f, n );
 	
-	vs[ini-65] = 1;
+	vs[ini-1] = 1;
 	inserir( &f, ini );
-	int i, achou = 0;
-	char x;
+	int x, achou = 0;
 	while( !fila_vazia( f ) && !achou ) {
 		remover( &f, &x );
 		if( x == fim ) {
 			achou = 1;
 		} else {
-			for( i=0; i<N; i++) {
-				if( g.dados[x-65][i] == 1 ) {
-					if( vs[i] == 0 ) {
-						vs[i] = 1;
-						va[i] = x;
-						inserir( &f, i+65 );
-					}
+			for( i=0; i<n; i++) {
+				if( g.dados[x-1][i] == 1 && vs[i] == 0 ) {
+					vs[i] = 1;
+					va[i] = x;
+					inserir( &f, i+1 );
 				}
 			}
 		}
@@ -70,34 +59,25 @@ int main(int argc, char *argv[]) {
 	
 	Pilha p;
 	if( achou ) {
-		inicializa_pilha( &p, N );
-		while( x != 0 ) {
+		inicializa_pilha( &p, n );
+		while( x != -1 ) {
 			empilha( &p, x );
-			x = va[x-65];
+			x = va[x-1];
 		}
-		printf("\n Caminho Mais Rápido de %c a %c:\n\n ", ini, fim);
+		printf("\n Caminho Mais Rápido de %d a %d:\n\n ", ini, fim);
 		while( !pilha_vazia( p ) ) {
 			desempilha( &p, &x );
-			if( int_ver( x ) ) {
-				printf("%c", x);
-				if(!pilha_vazia( p )) {
-					printf(" -> ");
-				}
+			printf("%d", x);
+			if(!pilha_vazia( p )) {
+				printf(" -> ");
 			}
 		}
 		printf("\n");
 	} else {
-		printf("\n %c NÃO é Alcançável a Partir de A!\n");
+		printf("\n %d NÃO é Alcançável a Partir de %d!\n", fim, ini);
 	}
 	
 	desaloca_grafo( &g );
 	
 	return 0;
-}
-
-int int_ver( char c ) {
-	if( c<65 || ( c>71 && c<97 ) || c>103 ) {
-		return 0;
-	}
-	return 1;
 }

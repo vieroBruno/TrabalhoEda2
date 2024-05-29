@@ -3,7 +3,7 @@
 #include "Fila.h"
 
 void inicializa_fila( Fila *p, int c ){
-	p->dados = malloc( c );
+	p->dados = malloc( sizeof(int) * c );
 	p->inicio = p->n = 0;
 	p->capacidade = c;
 }
@@ -16,7 +16,7 @@ int fila_cheia( Fila f ){
 	return f.n == f.capacidade;
 }
 
-int inserir( Fila *p, char info ){
+int inserir( Fila *p, int info ){
 	if( fila_cheia( *p ) )
 		return ERRO_FILA_CHEIA;
 	
@@ -26,7 +26,7 @@ int inserir( Fila *p, char info ){
 	return 1; // Sucesso.
 }
 
-int remover( Fila *p, char *info ){
+int remover( Fila *p, int *info ){
 	if( fila_vazia( *p ) )
 		return ERRO_FILA_VAZIA;
 	*info = p->dados[p->inicio];
@@ -43,7 +43,7 @@ void mostra_fila( Fila f ){
 		int i, cont;
 		i = f.inicio;
 		for( cont = 0 ; cont < f.n ; cont++ ){
-			printf("[%d] %c\n", i, f.dados[i] );
+			printf("[%d] %d\n", i, f.dados[i] );
 			i = (i + 1) % f.capacidade;
 		}
 	}
