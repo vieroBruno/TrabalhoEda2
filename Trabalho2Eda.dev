@@ -91,11 +91,11 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit6]
-FileName=lib\entrada.txt
+FileName=lib\Fila.c
 CompileCpp=0
 Folder=
-Compile=0
-Link=0
+Compile=1
+Link=1
 Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
@@ -111,7 +111,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit7]
-FileName=lib\Fila.c
+FileName=lib\Fila.h
 CompileCpp=0
 Folder=
 Compile=1
@@ -121,11 +121,11 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit8]
-FileName=lib\Fila.h
+FileName=entrada.txt
 CompileCpp=0
 Folder=
-Compile=1
-Link=1
+Compile=0
+Link=0
 Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
